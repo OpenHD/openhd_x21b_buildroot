@@ -1,0 +1,68 @@
+RKIPC_SITE = $(TOPDIR)/../app/rkipc
+RKIPC_SITE_METHOD = local
+RKIPC_LICENSE = ROCKCHIP
+RKIPC_LICENSE_FILES = LICENSE
+
+RKIPC_DEPENDENCIES = camera-engine-rkaiq wpa_supplicant freetype common_algorithm
+
+ifeq ($(call qstrip,$(BR2_ARCH)), arm)
+RKIPC_ARCH = arm
+else ifeq ($(call qstrip, $(BR2_ARCH)), aarch64)
+RKIPC_ARCH = arm64
+endif
+
+ifeq ($(BR2_PACKAGE_RKIPC_RK3576), y)
+    RKIPC_DEPENDENCIES += rkfsmk rockit rockchip-rga
+    RKIPC_CONF_OPTS += -DCOMPILE_FOR_RK3576=ON
+    RKIPC_CONF_OPTS += -DCOMPILE_FOR_BUILDROOT=ON
+endif
+
+ifeq ($(BR2_PACKAGE_RKIPC_RK3576_MULTI_IPC), y)
+    RKIPC_DEPENDENCIES += rkfsmk rockit rockchip-rga
+    RKIPC_CONF_OPTS += -DCOMPILE_FOR_RK3576_MULTI_IPC=ON
+    RKIPC_CONF_OPTS += -DCOMPILE_FOR_BUILDROOT=ON
+endif
+
+ifeq ($(BR2_PACKAGE_RKIPC_RK3576_DV), y)
+    RKIPC_DEPENDENCIES += rkfsmk rockit rockchip-rga
+    RKIPC_CONF_OPTS += -DCOMPILE_FOR_RK3576_DV=ON
+    RKIPC_CONF_OPTS += -DCOMPILE_FOR_BUILDROOT=ON
+endif
+
+ifeq ($(BR2_PACKAGE_RKIPC_RK3588), y)
+    RKIPC_DEPENDENCIES += rkfsmk rockit rockchip-rga
+    RKIPC_CONF_OPTS += -DCOMPILE_FOR_RK3588=ON
+    RKIPC_CONF_OPTS += -DCOMPILE_FOR_BUILDROOT=ON
+endif
+
+ifeq ($(BR2_PACKAGE_RKIPC_RK3588_MULTI_IPC), y)
+    RKIPC_DEPENDENCIES += rkfsmk rockit rockchip-rga
+    RKIPC_CONF_OPTS += -DCOMPILE_FOR_RK3588_MULTI_IPC=ON
+    RKIPC_CONF_OPTS += -DCOMPILE_FOR_BUILDROOT=ON
+endif
+
+ifeq ($(BR2_PACKAGE_RKIPC_RV1126), y)
+    RKIPC_DEPENDENCIES += rkmedia rkfsmk
+    RKIPC_CONF_OPTS += -DCOMPILE_FOR_RV1126_RKMEDIA=ON
+endif
+
+ifeq ($(BR2_PACKAGE_RKIPC_RV1126_BATTERY_IPC), y)
+	RKIPC_DEPENDENCIES += rockit rktoolkit
+	RKIPC_CONF_OPTS += -DCOMPILE_FOR_RV1126_BATTERY_IPC=ON
+endif
+
+ifeq ($(BR2_PACKAGE_RKIPC_RV1126B), y)
+    RKIPC_DEPENDENCIES += rkfsmk rockit rockchip-rga iva camera-engine-rkaiq
+    RKIPC_CONF_OPTS += -DCOMPILE_FOR_RV1126B=ON
+    RKIPC_CONF_OPTS += -DRK_APP_ARCH_TYPE=$(RKIPC_ARCH)
+    RKIPC_CONF_OPTS += -DCOMPILE_FOR_BUILDROOT=ON
+endif
+
+ifeq ($(BR2_PACKAGE_RKIPC_RV1126B_DV), y)
+    RKIPC_DEPENDENCIES += rkfsmk rockit rockchip-rga camera-engine-rkaiq lvgl
+    RKIPC_CONF_OPTS += -DCOMPILE_FOR_RV1126B_DV=ON
+    RKIPC_CONF_OPTS += -DRK_APP_ARCH_TYPE=$(RKIPC_ARCH)
+    RKIPC_CONF_OPTS += -DCOMPILE_FOR_BUILDROOT=ON
+endif
+
+$(eval $(cmake-package))
