@@ -1,0 +1,22 @@
+#include "base/base.config"
+#include "chips/rv1126b_aarch64.config"
+#include "fs/exfat.config"
+#include "fs/ntfs.config"
+#include "fs/vfat.config"
+#include "multimedia/camera.config"
+#include "multimedia/gst/audio.config"
+#include "multimedia/gst/camera.config"
+#include "multimedia/gst/rtsp.config"
+#include "multimedia/gst/video.config"
+#include "multimedia/mpp.config"
+#include "tools/common.config"
+# BR2_PACKAGE_GST1_PLUGINS_GOOD_PLUGIN_PULSE is reset to default
+BR2_PACKAGE_LIBSNDFILE=y
+BR2_PACKAGE_LIBTOOL=y
+# BR2_PACKAGE_PULSEAUDIO is reset to default
+BR2_PACKAGE_OPENSSH=y
+BR2_PACKAGE_OPENSSH_CLIENT=y
+BR2_PACKAGE_OPENSSH_SERVER=y
+BR2_PACKAGE_OPENSSH_ENABLE_ROOT_LOGIN=y
+BR2_PACKAGE_OPENSSH_KEY_UTILS=y
+# BR2_PACKAGE_ROCKCHIP_TEST is not set
