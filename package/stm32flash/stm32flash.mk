@@ -4,9 +4,10 @@
 #
 ################################################################################
 
-STM32FLASH_VERSION = 0.7
-STM32FLASH_SITE = http://downloads.sourceforge.net/project/stm32flash
-STM32FLASH_LICENSE = GPL-2.0+
+STM32FLASH_VERSION = 16547fd08e13555a87c1d5c7160e690de0c577e9
+STM32FLASH_SITE = https://git.code.sf.net/p/stm32flash/code
+STM32FLASH_SITE_METHOD = git
+STM32FLASH_LICENSE = GPL-2.0+1
 STM32FLASH_LICENSE_FILES = gpl-2.0.txt
 
 define STM32FLASH_BUILD_CMDS
