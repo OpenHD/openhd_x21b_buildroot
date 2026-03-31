@@ -2767,6 +2767,7 @@ comment "Utilities"
 endmenu
 
 menu "System tools"
+	source "package/slotcfg/Config.in"
 	source "package/acl/Config.in"
 	source "package/android-adb/Config.in"
 	source "package/android-adbd/Config.in"

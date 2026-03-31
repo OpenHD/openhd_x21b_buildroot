@@ -1,0 +1,4 @@
+config BR2_PACKAGE_SLOTCFG
+    bool "slotcfg"
+    help
+      Small utility to manage slotconfig A/B metadata records.
