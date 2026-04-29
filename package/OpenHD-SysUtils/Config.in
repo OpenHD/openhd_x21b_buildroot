@@ -1,0 +1,4 @@
+config BR2_PACKAGE_OPENHD_SYSUTILS
+    bool "openhd-sysutils"
+    help
+      OpenHD-SysUtils package
