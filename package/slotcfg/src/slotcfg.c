@@ -199,7 +199,7 @@ static void fill_record(struct slot_status_record *rec,
     rec->slot = (uint8_t)slot;
     rec->fail_count = fail_count;
     rec->good = good;
-    rec->reserved = 0;
+    rec->reserved = 0xFF;
     rec->crc32 = crc32_calc(rec, offsetof(struct slot_status_record, fail_count));
 }
 
