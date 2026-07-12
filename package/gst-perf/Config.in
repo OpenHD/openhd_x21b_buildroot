@@ -1,0 +1,7 @@
+config BR2_PACKAGE_GST_PERF
+	bool "gst-perf"
+	depends on BR2_PACKAGE_GSTREAMER1
+	help
+	  GStreamer element to measure framerate, bitrate and CPU usage.
+
+	  https://github.com/RidgeRun/gst-perf
