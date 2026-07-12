@@ -1,0 +1,5 @@
+config BR2_PACKAGE_X21B_LED_HELPER
+    bool "x21b-led-helper"
+    select BR2_PACKAGE_LIBGPIOD
+    help
+      Small utility to handle x21b led mcu communications
