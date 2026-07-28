@@ -29,7 +29,7 @@ OPENHD_GIT_SUBMODULES = YES
 
 # Always resolve to the current HEAD of the openhd-3.0 branch
 # Note: this is not reproducible and is not the recommended Buildroot approach.
-OPENHD_VERSION = db2140a2f19d76e92708d6dd8aa0931f44744f6a
+OPENHD_VERSION = a35d2f1546ec67fc0cc063d12db2b4e4d9cbe78d
 
 # Enable Git submodules if the project requires them
 OPENHD_GIT_SUBMODULES = YES
