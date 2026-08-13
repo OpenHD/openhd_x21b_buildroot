@@ -255,7 +255,7 @@ index f94d55826..abe613c7a 100644
  	{
  		.bus_fmt = MEDIA_BUS_FMT_SGBRG12_1X12,
  		.width = 1944,
-@@ -1609,6 +1848,70 @@ static int imx415_g_frame_interval(struct v4l2_subdev *sd,
+@@ -1609,6 +1848,85 @@ static int imx415_g_frame_interval(struct v4l2_subdev *sd,
  	return 0;
  }
  
@@ -305,6 +305,22 @@ index f94d55826..abe613c7a 100644
 +		return -EINVAL;
 +	}
 +
++	/*
++	 * Modes sharing a frame size can use different input clocks.  S_FMT may
++	 * already have powered the subdevice with the clock for the first matching
++	 * (30 fps) mode, so update it before committing the 27 MHz HFR mode.
++	 */
++	if (best->xvclk != cur->xvclk) {
++		int ret = clk_set_rate(imx415->xvclk, best->xvclk);
++
++		if (ret) {
++			dev_err(&imx415->client->dev,
++				"failed to set xvclk for requested frame interval\n");
++			mutex_unlock(&imx415->mutex);
++			return ret;
++		}
++	}
++
 +	imx415_change_mode(imx415, best);
 +	h_blank = best->hts_def - best->width;
 +	__v4l2_ctrl_modify_range(imx415->hblank, h_blank, h_blank, 1, h_blank);
@@ -326,7 +342,7 @@ index f94d55826..abe613c7a 100644
  static int imx415_g_mbus_config(struct v4l2_subdev *sd, unsigned int pad_id,
  				struct v4l2_mbus_config *config)
  {
-@@ -2862,6 +3165,7 @@ static const struct v4l2_subdev_core_ops imx415_core_ops = {
+@@ -2862,6 +3180,7 @@ static const struct v4l2_subdev_core_ops imx415_core_ops = {
  static const struct v4l2_subdev_video_ops imx415_video_ops = {
  	.s_stream = imx415_s_stream,
  	.g_frame_interval = imx415_g_frame_interval,
