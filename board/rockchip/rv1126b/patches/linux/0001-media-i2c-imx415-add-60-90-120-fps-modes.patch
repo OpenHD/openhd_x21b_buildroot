@@ -2,7 +2,7 @@ diff --git a/drivers/media/i2c/imx415.c b/drivers/media/i2c/imx415.c
 index f94d55826..abe613c7a 100644
 --- a/drivers/media/i2c/imx415.c
 +++ b/drivers/media/i2c/imx415.c
-@@ -726,6 +726,185 @@ static __maybe_unused const struct regval imx415_linear_12bit_1932x1096_594M_reg
+@@ -726,6 +726,203 @@ static __maybe_unused const struct regval imx415_linear_12bit_1932x1096_594M_reg
  	{REG_NULL, 0x00},
  };
  
@@ -11,7 +11,7 @@ index f94d55826..abe613c7a 100644
 + * output.  These common settings are shared by the OpenHD high-frame-rate
 + * binning modes below.
 + */
-+static const struct regval imx415_global_12bit_27m_regs[] = {
++static __maybe_unused const struct regval imx415_global_12bit_27m_regs[] = {
 +	{0x3008, 0x5D},
 +	{0x300A, 0x42},
 +	{0x3031, 0x00},
@@ -110,6 +110,21 @@ index f94d55826..abe613c7a 100644
 +	{REG_NULL, 0x00},
 +};
 +
++#define IMX415_HFR_891M_CSI_REGS \
++	{0x3701, 0x00}, \
++	{0x400C, 0x00}, \
++	{0x4018, 0x7F}, \
++	{0x401A, 0x37}, \
++	{0x401C, 0x37}, \
++	{0x401E, 0xF7}, \
++	{0x401F, 0x00}, \
++	{0x4020, 0x3F}, \
++	{0x4022, 0x6F}, \
++	{0x4024, 0x3F}, \
++	{0x4026, 0x5F}, \
++	{0x4028, 0x2F}, \
++	{0x4074, 0x01},
++
 +static const struct regval imx415_linear_12bit_1932x1096_60fps_regs[] = {
 +	{0x301C, 0x00},
 +	{0x3020, 0x01},
@@ -129,6 +144,7 @@ index f94d55826..abe613c7a 100644
 +	{0x30D9, 0x02},
 +	{0x30DA, 0x01},
 +	{0x3260, 0x01},
++	IMX415_HFR_891M_CSI_REGS
 +	{REG_NULL, 0x00},
 +};
 +
@@ -152,6 +168,7 @@ index f94d55826..abe613c7a 100644
 +	{0x30D9, 0x02},
 +	{0x30DA, 0x01},
 +	{0x3260, 0x01},
++	IMX415_HFR_891M_CSI_REGS
 +	{REG_NULL, 0x00},
 +};
 +
@@ -182,18 +199,19 @@ index f94d55826..abe613c7a 100644
 +	{0x30D9, 0x02},
 +	{0x30DA, 0x01},
 +	{0x3260, 0x01},
++	IMX415_HFR_891M_CSI_REGS
 +	{REG_NULL, 0x00},
 +};
 +
  static __maybe_unused const struct regval imx415_hdr2_12bit_1932x1096_891M_regs[] = {
  	{0x3020, 0x01},
  	{0x3021, 0x01},
-@@ -1275,6 +1454,66 @@ static const struct imx415_mode supported_modes[] = {
+@@ -1275,6 +1472,66 @@ static const struct imx415_mode supported_modes[] = {
  		.vc[PAD0] = 0,
  		.xvclk = IMX415_XVCLK_FREQ_37M,
  	},
 +	{
-+		/* 2x2 binning, 27 MHz xclk, 891 Mbps/lane. */
++		/* 2x2 binning, X21 37.125 MHz xclk, 891 Mbps/lane. */
 +		.bus_fmt = MEDIA_BUS_FMT_SGBRG12_1X12,
 +		.width = 1944,
 +		.height = 1097,
@@ -204,13 +222,13 @@ index f94d55826..abe613c7a 100644
 +		.exp_def = 0x08ca - 0x08,
 +		.hts_def = 0x021b * IMX415_4LANES * 2,
 +		.vts_def = 0x08ca,
-+		.global_reg_list = imx415_global_12bit_27m_regs,
++		.global_reg_list = imx415_global_12bit_3864x2192_regs,
 +		.reg_list = imx415_linear_12bit_1932x1096_60fps_regs,
 +		.hdr_mode = NO_HDR,
 +		.mipi_freq_idx = 1,
 +		.bpp = 12,
 +		.vc[PAD0] = 0,
-+		.xvclk = IMX415_XVCLK_FREQ_27M,
++		.xvclk = IMX415_XVCLK_FREQ_37M,
 +	},
 +	{
 +		/* 2x2 binning; corrected HMAX from the source table's 0x0226. */
@@ -224,13 +242,13 @@ index f94d55826..abe613c7a 100644
 +		.exp_def = 0x08ca - 0x08,
 +		.hts_def = 0x016d * IMX415_4LANES * 2,
 +		.vts_def = 0x08ca,
-+		.global_reg_list = imx415_global_12bit_27m_regs,
++		.global_reg_list = imx415_global_12bit_3864x2192_regs,
 +		.reg_list = imx415_linear_12bit_1932x1096_90fps_regs,
 +		.hdr_mode = NO_HDR,
 +		.mipi_freq_idx = 1,
 +		.bpp = 12,
 +		.vc[PAD0] = 0,
-+		.xvclk = IMX415_XVCLK_FREQ_27M,
++		.xvclk = IMX415_XVCLK_FREQ_37M,
 +	},
 +	{
 +		/* 2x2 binning plus a 2568x1440 sensor crop. */
@@ -244,18 +262,18 @@ index f94d55826..abe613c7a 100644
 +		.exp_def = 0x066c - 0x08,
 +		.hts_def = 0x016d * IMX415_4LANES * 2,
 +		.vts_def = 0x066c,
-+		.global_reg_list = imx415_global_12bit_27m_regs,
++		.global_reg_list = imx415_global_12bit_3864x2192_regs,
 +		.reg_list = imx415_linear_12bit_1284x720_120fps_regs,
 +		.hdr_mode = NO_HDR,
 +		.mipi_freq_idx = 1,
 +		.bpp = 12,
 +		.vc[PAD0] = 0,
-+		.xvclk = IMX415_XVCLK_FREQ_27M,
++		.xvclk = IMX415_XVCLK_FREQ_37M,
 +	},
  	{
  		.bus_fmt = MEDIA_BUS_FMT_SGBRG12_1X12,
  		.width = 1944,
-@@ -1609,6 +1848,87 @@ static int imx415_g_frame_interval(struct v4l2_subdev *sd,
+@@ -1609,6 +1866,87 @@ static int imx415_g_frame_interval(struct v4l2_subdev *sd,
  	return 0;
  }
  
@@ -344,7 +362,7 @@ index f94d55826..abe613c7a 100644
  static int imx415_g_mbus_config(struct v4l2_subdev *sd, unsigned int pad_id,
  				struct v4l2_mbus_config *config)
  {
-@@ -2862,6 +3182,7 @@ static const struct v4l2_subdev_core_ops imx415_core_ops = {
+@@ -2862,6 +3200,7 @@ static const struct v4l2_subdev_core_ops imx415_core_ops = {
  static const struct v4l2_subdev_video_ops imx415_video_ops = {
  	.s_stream = imx415_s_stream,
  	.g_frame_interval = imx415_g_frame_interval,
