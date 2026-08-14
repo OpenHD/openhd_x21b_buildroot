@@ -273,7 +273,7 @@ index f94d55826..abe613c7a 100644
  	{
  		.bus_fmt = MEDIA_BUS_FMT_SGBRG12_1X12,
  		.width = 1944,
-@@ -1609,6 +1866,87 @@ static int imx415_g_frame_interval(struct v4l2_subdev *sd,
+@@ -1609,6 +1866,88 @@ static int imx415_g_frame_interval(struct v4l2_subdev *sd,
  	return 0;
  }
  
@@ -362,7 +362,7 @@ index f94d55826..abe613c7a 100644
  static int imx415_g_mbus_config(struct v4l2_subdev *sd, unsigned int pad_id,
  				struct v4l2_mbus_config *config)
  {
-@@ -2862,6 +3200,7 @@ static const struct v4l2_subdev_core_ops imx415_core_ops = {
+@@ -2862,6 +3201,7 @@ static const struct v4l2_subdev_core_ops imx415_core_ops = {
  static const struct v4l2_subdev_video_ops imx415_video_ops = {
  	.s_stream = imx415_s_stream,
  	.g_frame_interval = imx415_g_frame_interval,
