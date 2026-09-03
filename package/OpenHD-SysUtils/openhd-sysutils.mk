@@ -28,7 +28,7 @@ OPENHD_SYSUTILS_SITE_METHOD = git
 OPENHD_SYSUTILS_GIT_SUBMODULES = YES
 
 # Set the version to the latest commit of the default branch
-OPENHD_SYSUTILS_VERSION = d3201bec6044c7022948a844e04f47c50bc51bea
+OPENHD_SYSUTILS_VERSION = c3fef6aa9526194fced369ed32ec7c97dba84d99
 
 # Enable Git submodules if the project requires them
 OPENHD_SYSUTILS_GIT_SUBMODULES = YES
