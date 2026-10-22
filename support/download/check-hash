@@ -33,6 +33,7 @@ shift 2
 declare -a h_files=( "${@}" )
 
 gen_hash() {
+    mkdir -p "$(dirname "${h_file}")"
     _hash=$( sha256sum "${file}" |cut -d ' ' -f 1 )
     cat << EOF > "${h_file}"
 # Locally calculated

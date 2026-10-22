@@ -90,7 +90,7 @@ BR2_PACKAGE_LIBSODIUM=y
 BR2_PACKAGE_OPENHD=y
 BR2_PACKAGE_OPENHD_SYSUTILS=y
 
-# OHD debug
-BR2_PACKAGE_SOCAT=y
-BR2_PACKAGE_STRACE=y
+# Production defaults. Install diagnostics explicitly when investigating a board.
+# BR2_PACKAGE_SOCAT is not set
+# BR2_PACKAGE_STRACE is not set
 BR2_PACKAGE_UTIL_LINUX_BINARIES=y

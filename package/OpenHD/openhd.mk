@@ -27,9 +27,8 @@ OPENHD_SITE = https://github.com/OpenHD/OpenHD.git
 OPENHD_SITE_METHOD = git
 OPENHD_GIT_SUBMODULES = YES
 
-# Always resolve to the current HEAD of the openhd-3.0 branch
-# Note: this is not reproducible and is not the recommended Buildroot approach.
-OPENHD_VERSION = fdef7483e78516fb03d8b44ca9ffa73b3bc62440
+# Immutable application source; the manifest pins this Buildroot revision.
+OPENHD_VERSION = 01b0ad2458e6799aaac6aa23dcec48bb8e59761b
 
 # Enable Git submodules if the project requires them
 OPENHD_GIT_SUBMODULES = YES
@@ -41,11 +40,14 @@ OPENHD_SUBDIR = OpenHD
 OPENHD_INSTALL_TARGET = YES
 
 # List of dependencies that must be built before OpenHD
-OPENHD_DEPENDENCIES = poco libsodium gstreamer1 gst1-plugins-base libpcap host-pkgconf
+OPENHD_DEPENDENCIES = poco libsodium gstreamer1 gst1-plugins-base libpcap libusb librtlsdr rockchip-mpp host-pkgconf
 
 # Additional configuration options for the CMake build
 OPENHD_CONF_OPTS = \
     -DENABLE_USB_CAMERAS=OFF \
+    -DBUILD_SHARED_LIBS=OFF \
+    -DOPENHD_ENABLE_DEVOURER=ON \
+    -DDEVOURER_JAGUAR3_8822E=ON \
     -DCMAKE_EXE_LINKER_FLAGS="-lstdc++fs"
 
 # Install init.d services to target

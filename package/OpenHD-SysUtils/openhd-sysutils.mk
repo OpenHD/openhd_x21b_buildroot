@@ -27,8 +27,8 @@ OPENHD_SYSUTILS_SITE = https://github.com/OpenHD/OpenHD-SysUtils.git
 OPENHD_SYSUTILS_SITE_METHOD = git
 OPENHD_SYSUTILS_GIT_SUBMODULES = YES
 
-# Set the version to the latest commit of the default branch
-OPENHD_SYSUTILS_VERSION = e268ae3d20861ad9c0fa208cde312a0e5e21d8ab
+# Immutable source paired with the OpenHD and SDK revisions in the manifest.
+OPENHD_SYSUTILS_VERSION = a1eb6ef62be4c519090084ad0b2222b0bdb0b2c9
 
 # Enable Git submodules if the project requires them
 OPENHD_SYSUTILS_GIT_SUBMODULES = YES
