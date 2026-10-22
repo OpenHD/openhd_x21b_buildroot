@@ -28,7 +28,7 @@ OPENHD_SITE_METHOD = git
 OPENHD_GIT_SUBMODULES = YES
 
 # Immutable application source; the manifest pins this Buildroot revision.
-OPENHD_VERSION = 857bece519d608414731a68c73f9862154841015
+OPENHD_VERSION = eba46fe47961875aa9aba8f25b685c256c3643b3
 
 # Enable Git submodules if the project requires them
 OPENHD_GIT_SUBMODULES = YES
